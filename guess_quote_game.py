@@ -2,21 +2,16 @@ import csv
 import random
 
 # download data from flat files
-
-
 def reader(filename):
     with open(filename, encoding='utf-8') as file:
         r = csv.DictReader(file)
         return list(r)
 
-
 quotes = reader("quotes.csv")
 bio = reader("bio.csv")
 
 # play game
-play_again = 'y'
-while play_again.lower()[0] == 'y':
-    # choose quote for a game
+def play_game():
     random_quote = random.choice(quotes)
     for b in bio:
         if b['author_link'] == random_quote['bio_link']:
@@ -46,5 +41,13 @@ while play_again.lower()[0] == 'y':
             print(f"here is a hint: {hint}")
         else:
             print(f'You loose, here is the answer: {quote_answer}')
-    print('Do you want to play again? (y/n)')
-    play_again = input()
+    #do you want to play again
+    play_again = ''
+    while play_again not in ('y', 'n'):
+        print('Do you want to play again? (y/n)')
+        play_again = input().lower()[0]
+    if play_again == 'y':
+        play_game()
+    return 'bye!'
+
+play_game()
