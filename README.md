@@ -1,7 +1,7 @@
 # quote-game
 Web scraping project where you download quuotes from web: https://quotes.toscrape.com/. Quotes are used to build guessing game with hints. Give it a try! Built with help and guidance of Colt Steele's Python Bootcamp
 
-##project content
+## project content
 
 - guess_quote_download_data.py: script downloading data from https://quotes.toscrape.com/ to csv files. There are two types of data, quotes saved in quotes.csv and authors bio data saved in a file bio.csv
 
@@ -11,6 +11,6 @@ Web scraping project where you download quuotes from web: https://quotes.toscrap
  
 - bio.csv: csv file containing author link, born date and born place of an author
 
-##how to play
+## how to play
 
 Open quess_quote_game.py and enjoy :) If you want the newest data from a website, before starting a game please run guess_quote_download_data.py. It will overwrite csv files with new data from the website. 
