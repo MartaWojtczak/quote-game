@@ -22,5 +22,19 @@ while i:
         sleep(choice([1,2,3,4,5]))
     else:
         break
-    
-print(searched_quotes)
+
+#from bio links info 
+bio_info = []
+authors = set()
+for dictionary in searched_quotes:
+    authors.add(dictionary["bio_link"])
+
+for bio in authors:
+    basic_http = 'https://quotes.toscrape.com/'
+    bio_result = requests.get(basic_http+bio)
+    soup = BeautifulSoup(bio_result.text, "html.parser")
+    author_info = soup.find(class_='author-details').find('p')
+    born_date = author_info.find(class_ = 'author-born-date').get_text()
+    born_place = author_info.find(class_ = 'author-born-location').get_text()
+    bio_info.append({'author_link': bio, 'born_date': born_date, 'born_place': born_place})
+    sleep(choice([1,2,3,4,5]))
