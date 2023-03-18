@@ -1,19 +1,22 @@
 import csv
 import random
 
-#download data from flat files
+# download data from flat files
+
+
 def reader(filename):
-    with open(filename, encoding = 'utf-8') as file:
+    with open(filename, encoding='utf-8') as file:
         r = csv.DictReader(file)
         return list(r)
+
 
 quotes = reader("quotes.csv")
 bio = reader("bio.csv")
 
-#play game
+# play game
 play_again = 'y'
 while play_again.lower()[0] == 'y':
-    #choose quote for a game
+    # choose quote for a game
     random_quote = random.choice(quotes)
     for b in bio:
         if b['author_link'] == random_quote['bio_link']:
@@ -24,7 +27,7 @@ while play_again.lower()[0] == 'y':
     bio_place = random_bio['born_place']
     counter = 4
     answer = ''
-    #start guessing
+    # start guessing
     print(f'Hey! Please guess who said that: {quote_to_guess}')
     while counter > 0:
         print(f'You have {counter} guesses remaining')
@@ -42,6 +45,6 @@ while play_again.lower()[0] == 'y':
                 hint = f'second letter of a name is {quote_answer[1]}'
             print(f"here is a hint: {hint}")
         else:
-            print(f'You loose, here is the answer: {quote_answer}') 
+            print(f'You loose, here is the answer: {quote_answer}')
     print('Do you want to play again? (y/n)')
     play_again = input()
