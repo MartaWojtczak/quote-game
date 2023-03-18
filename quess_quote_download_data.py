@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from time import sleep
 from random import choice 
 import requests
+import csv
 
 #quotes, authors, bio links from all pages 
 i = 1
@@ -38,3 +39,18 @@ for bio in authors:
     born_place = author_info.find(class_ = 'author-born-location').get_text()
     bio_info.append({'author_link': bio, 'born_date': born_date, 'born_place': born_place})
     sleep(choice([1,2,3,4,5]))
+
+with open("quotes.csv", "w", newline = '', encoding='utf-8') as quotes_file:
+    names = ['quote', 'author', 'bio_link']
+    quotes_writer = csv.DictWriter(quotes_file, fieldnames = names)
+    quotes_writer.writeheader()
+    for q in searched_quotes:
+        quotes_writer.writerow(q)
+
+
+with open("bio.csv", "w", newline = '', encoding='utf-8') as bio_file:
+    names = ['author_link', 'born_date', 'born_place']
+    bio_writer = csv.DictWriter(bio_file, fieldnames = names)
+    bio_writer.writeheader()
+    for q in bio_info:
+        bio_writer.writerow(q)
